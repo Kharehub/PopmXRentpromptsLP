@@ -92,7 +92,12 @@ export default function Hero() {
                     {/* CTAs */}
                     <FadeInUp delay={1.0}>
                         <div className="flex flex-wrap items-center gap-4 pointer-events-auto">
-                            <MagneticButton className="group relative inline-flex min-h-[44px] items-center gap-2 rounded-full bg-mint px-8 py-3.5 text-sm font-semibold text-black transition-all hover:glow-mint">
+                            <MagneticButton
+                                className="group relative inline-flex min-h-[44px] items-center gap-2 rounded-full bg-mint px-8 py-3.5 text-sm font-semibold text-black transition-all hover:glow-mint"
+                                onClick={() => {
+                                    document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
                                 Apply for Partnership
                                 <svg
                                     className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -109,7 +114,12 @@ export default function Hero() {
                                 </svg>
                             </MagneticButton>
 
-                            <MagneticButton className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm px-8 py-3.5 text-sm font-medium text-white/90 transition-colors hover:border-white/40 hover:bg-white/10">
+                            <MagneticButton
+                                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm px-8 py-3.5 text-sm font-medium text-white/90 transition-colors hover:border-white/40 hover:bg-white/10"
+                                onClick={() => {
+                                    document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
                                 Watch Our Reel
                                 <svg
                                     className="h-4 w-4"
