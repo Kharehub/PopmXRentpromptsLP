@@ -11,6 +11,7 @@ interface Capability {
     statLabel: string;
     icon: React.ReactNode;
     colSpan: string;
+    aspectRatio?: string;
     media?: { type: "video" | "image"; src: string };
 }
 
@@ -21,7 +22,8 @@ const capabilities: Capability[] = [
             "Authentic, scroll-stopping UGC ads crafted by our 700+ vetted global creator network. Optimized for TikTok, Reels & Shorts.",
         stat: "500+",
         statLabel: "variations / month",
-        colSpan: "lg:col-span-2",
+        colSpan: "sm:col-span-1 lg:col-span-1",
+        aspectRatio: "aspect-[9/16]",
         media: { type: "video", src: "/showcase/chand_2.mp4" },
         icon: (
             <svg className="h-8 w-8 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -35,7 +37,8 @@ const capabilities: Capability[] = [
             "High-converting static ad designs for Meta, Google Display & Pinterest. Every pixel engineered for performance.",
         stat: "3.2×",
         statLabel: "avg. ROAS lift",
-        colSpan: "lg:col-span-1",
+        colSpan: "sm:col-span-1 lg:col-span-1",
+        aspectRatio: "aspect-square",
         media: { type: "image", src: "/showcase/u6737477361_Curated_flat_lay_composition_with_Brand_X_skincar_8994c466-ef40-422e-80a0-23a1af093374_1.png" },
         icon: (
             <svg className="h-8 w-8 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -49,7 +52,8 @@ const capabilities: Capability[] = [
             "Cinematic motion ads with 3D elements, kinetic typography, and product animations that demand attention.",
         stat: "72%",
         statLabel: "higher view-through",
-        colSpan: "lg:col-span-1",
+        colSpan: "sm:col-span-1 lg:col-span-1",
+        aspectRatio: "aspect-[9/16]",
         media: { type: "video", src: "/showcase/AI_course_1_1__1_.mp4" },
         icon: (
             <svg className="h-8 w-8 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -63,7 +67,7 @@ const capabilities: Capability[] = [
             "Conversion-optimized landing pages that match your ad creative. Seamless funnel design from click to checkout.",
         stat: "48%",
         statLabel: "CVR improvement",
-        colSpan: "lg:col-span-2",
+        colSpan: "sm:col-span-2 lg:col-span-2",
         media: { type: "image", src: "/showcase/u6737477361_Relaxed_woman_in_flowing_white_dress_walking_thro_2439f68c-c3be-4098-b969-e3be8b66b3cb_1.png" },
         icon: (
             <svg className="h-8 w-8 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -131,11 +135,11 @@ export default function Capabilities() {
                 </div>
 
                 {/* ── Bento Grid ──────────────────────────────────── */}
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 items-center">
                     {capabilities.map((cap, i) => (
                         <FadeInUp key={cap.title} delay={0.1 * i} className={cap.colSpan}>
                             <motion.div
-                                className="group relative rounded-2xl p-8 h-full min-h-[320px] cursor-default overflow-hidden border border-white/5"
+                                className={`group relative rounded-2xl p-8 cursor-default overflow-hidden border border-white/5 ${cap.aspectRatio || 'h-full min-h-[320px]'}`}
                                 whileHover="hover"
                                 initial="initial"
                             >

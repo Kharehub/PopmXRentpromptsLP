@@ -140,7 +140,7 @@ export default function QualificationForm() {
                 {/* ── Form Card ───────────────────────────────────── */}
                 <FadeInUp delay={0.35}>
                     <div className="mx-auto max-w-xl">
-                        <div className="rounded-3xl glass-strong p-8 lg:p-10">
+                        <div className="rounded-3xl bg-white/[0.01] border border-white/[0.05] p-8 lg:p-10">
                             {/* Progress bar */}
                             <div className="mb-8">
                                 <div className="flex items-center justify-between mb-3">
