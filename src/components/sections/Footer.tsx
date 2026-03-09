@@ -3,10 +3,11 @@
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const navLinks = [
-    { label: "Problem", href: "#problem" },
-    { label: "Pipeline", href: "#pipeline" },
-    { label: "Capabilities", href: "#capabilities" },
-    { label: "Apply", href: "#apply" },
+    { label: "Problem", href: "/#problem" },
+    { label: "Pipeline", href: "/#pipeline" },
+    { label: "Capabilities", href: "/#capabilities" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Apply", href: "/#apply" },
 ];
 
 export default function Footer() {

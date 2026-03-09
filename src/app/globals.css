@@ -188,3 +188,14 @@
     background: rgba(201, 169, 110, 0.5);
   }
 }
+
+/* ── Marquee Animation ──────────────────────────────────────── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

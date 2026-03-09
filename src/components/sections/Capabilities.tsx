@@ -215,6 +215,31 @@ export default function Capabilities() {
                         </FadeInUp>
                     ))}
                 </div>
+
+                {/* ── View All CTA ─────────────────────────────────── */}
+                <FadeInUp delay={0.5}>
+                    <div className="mt-12 text-center">
+                        <a
+                            href="/case-studies"
+                            className="group inline-flex items-center gap-2 rounded-full border border-champagne/20 bg-white/[0.03] px-8 py-3 text-sm font-medium text-champagne hover:text-white hover:border-mint/40 hover:bg-white/[0.06] transition-all duration-300"
+                        >
+                            View All Case Studies
+                            <svg
+                                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </FadeInUp>
             </div>
 
             {/* Bottom divider */}

@@ -13,11 +13,16 @@ const spendTiers = [
 ];
 
 const clientLogos = [
-    "Premium DTC Brand",
-    "Fortune 500 Retail",
-    "Series B+ Startup",
-    "Global CPG",
-    "Enterprise SaaS",
+    "GenZAI University",
+    "Cult Fit",
+    "Heart of Oud",
+    "Miler",
+    "Koswi",
+    "Sitara",
+    "Iron Boost",
+    "Joy Body Wash",
+    "American Fragrance",
+    "Murad",
 ];
 
 export default function QualificationForm() {
@@ -122,19 +127,45 @@ export default function QualificationForm() {
                         <p className="text-center text-xs font-medium tracking-[0.2em] uppercase text-[#5a6a6e] mb-6">
                             Trusted by Leading Brands
                         </p>
-                        <div className="flex flex-wrap items-center justify-center gap-6">
-                            {clientLogos.map((name) => (
-                                <div
-                                    key={name}
-                                    className="flex h-10 items-center justify-center rounded-lg border border-champagne/10 bg-white/[0.02] px-6"
-                                >
-                                    <span className="text-xs font-medium text-[#5a6a6e] tracking-wider">
-                                        {name}
-                                    </span>
-                                </div>
-                            ))}
+                        <div
+                            className="relative overflow-hidden"
+                            style={{
+                                maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                                WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                            }}
+                        >
+                            <div
+                                className="flex w-max gap-6"
+                                style={{
+                                    animation: "marquee 30s linear infinite",
+                                }}
+                            >
+                                {/* First copy */}
+                                {clientLogos.map((name, i) => (
+                                    <div
+                                        key={`a-${i}`}
+                                        className="flex h-11 items-center justify-center rounded-lg border border-champagne/10 bg-white/[0.03] px-7 shrink-0"
+                                    >
+                                        <span className="text-sm font-semibold text-[#b0bec5] tracking-wide whitespace-nowrap">
+                                            {name}
+                                        </span>
+                                    </div>
+                                ))}
+                                {/* Duplicate for seamless loop */}
+                                {clientLogos.map((name, i) => (
+                                    <div
+                                        key={`b-${i}`}
+                                        className="flex h-11 items-center justify-center rounded-lg border border-champagne/10 bg-white/[0.03] px-7 shrink-0"
+                                    >
+                                        <span className="text-sm font-semibold text-[#b0bec5] tracking-wide whitespace-nowrap">
+                                            {name}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
+
                 </FadeInUp>
 
                 {/* ── Form Card ───────────────────────────────────── */}
