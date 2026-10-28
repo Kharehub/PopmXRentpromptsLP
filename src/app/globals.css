@@ -158,6 +158,8 @@
 
   .font-editorial {
     font-family: "Playfair Display", ui-serif, Georgia, serif;
+    font-feature-settings: "liga" 1, "kern" 1;
+    letter-spacing: -0.02em;
   }
 
   .section-divider {

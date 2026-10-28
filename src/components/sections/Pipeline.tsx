@@ -132,9 +132,10 @@ export default function Pipeline() {
                 {/* ── Beam Diagram ─────────────────────────────────── */}
                 <FadeInUp delay={0.3}>
                     <div
-                        className="relative mx-auto w-full max-w-5xl rounded-3xl bg-white/[0.01] border border-white/[0.05] p-6 lg:p-12 overflow-x-auto custom-scrollbar"
+                        className="relative mx-auto w-full max-w-5xl rounded-3xl bg-white/[0.01] border border-white/[0.05] p-6 lg:p-12 overflow-x-auto lg:overflow-visible custom-scrollbar"
                     >
-                        <div ref={containerRef} className="flex min-w-[800px] w-full items-center justify-between gap-8 md:gap-12 relative">
+                        {/* ── Desktop & Tablet: Animated Beam ── */}
+                        <div ref={containerRef} className="hidden lg:flex min-w-[800px] w-full items-center justify-between gap-8 md:gap-12 relative">
 
                             {/* Col 1: Resources (Inputs) */}
                             <div className="flex flex-col items-center gap-12 z-10 w-[140px]">
@@ -254,6 +255,70 @@ export default function Pipeline() {
                                 duration={5}
                                 delay={3.0}
                             />
+
+                        </div>
+
+                        {/* ── Mobile: Vertical Stack ── */}
+                        <div className="flex lg:hidden flex-col items-center w-full relative pt-4 pb-8">
+                            
+                            {/* Inputs */}
+                            <div className="grid grid-cols-2 gap-x-8 gap-y-8 w-full max-w-xs mb-4">
+                                <Node label="700+ Creators" sublabel="Raw Footage & UGC">
+                                    <Users className="h-6 w-6 text-champagne" />
+                                </Node>
+                                <Node label="In-House AI" sublabel="Generative Tools">
+                                    <Sparkles className="h-6 w-6 text-champagne" />
+                                </Node>
+                                <div className="col-span-2 flex justify-center">
+                                    <Node label="Creative Team" sublabel="Editors & Writers">
+                                        <PenTool className="h-6 w-6 text-champagne" />
+                                    </Node>
+                                </div>
+                            </div>
+
+                            {/* Arrow Down */}
+                            <div className="flex flex-col items-center opacity-50 py-2">
+                                <div className="w-px h-10 bg-gradient-to-b from-champagne to-mint" />
+                                <svg className="h-4 w-4 text-mint -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </div>
+
+                            {/* Center Hub */}
+                            <CentralNode label="Creative Hub" sublabel="Design & Editing Workflow">
+                                <LayoutTemplate className="h-10 w-10 text-mint" />
+                            </CentralNode>
+
+                            {/* Arrow Down */}
+                            <div className="flex flex-col items-center opacity-50 py-2">
+                                <div className="w-px h-10 bg-gradient-to-b from-mint to-teal-400" />
+                                <svg className="h-4 w-4 text-teal-400 -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </div>
+
+                            {/* Refinement */}
+                            <div className="flex flex-row justify-center gap-6 w-full max-w-xs mb-4">
+                                <Node label="Targeting & Analysis" sublabel="ICP Mapping" className="border-teal/50 bg-teal/5">
+                                    <Target className="h-6 w-6 text-teal-300" />
+                                </Node>
+                                <Node label="Platform Leverage" sublabel="Multi-Formats" className="border-teal/50 bg-teal/5">
+                                    <Component className="h-6 w-6 text-teal-300" />
+                                </Node>
+                            </div>
+
+                            {/* Arrow Down */}
+                            <div className="flex flex-col items-center opacity-50 py-2">
+                                <div className="w-px h-10 bg-gradient-to-b from-teal-400 to-mint" />
+                                <svg className="h-4 w-4 text-mint -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </div>
+
+                            {/* Output */}
+                            <OutputNode label="Winning Ad Creatives" sublabel="High-Quality, Targeted Ads">
+                                <Rocket className="h-8 w-8 text-mint" />
+                            </OutputNode>
 
                         </div>
                     </div>

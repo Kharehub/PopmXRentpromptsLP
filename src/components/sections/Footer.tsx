@@ -17,9 +17,12 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                     {/* Brand */}
                     <div>
-                        <h3 className="font-editorial text-2xl font-bold text-white mb-4">
-                            POPM Consultants
-                        </h3>
+                        <div className="flex items-center gap-3 mb-4">
+                            <img src="/popm-logo.png" alt="POPM Logo" className="h-10 w-auto object-contain brightness-0 invert" />
+                            <h3 className="font-editorial text-2xl font-bold text-white">
+                                POPM
+                            </h3>
+                        </div>
                         <p className="text-sm leading-relaxed text-[#8a9a9e] max-w-sm">
                             Elite ad creative production for 8-figure e-commerce brands.
                             AI-augmented. Performance-engineered. Scale-ready.
@@ -62,7 +65,7 @@ export default function Footer() {
                             Ready to Start?
                         </h4>
                         <p className="text-sm text-[#8a9a9e] mb-6">
-                            Only 3 partnership slots per quarter. Don&apos;t let creative
+                            Only 20 partnership slots per quarter. Don&apos;t let creative
                             fatigue cost you another month of revenue.
                         </p>
                         <MagneticButton

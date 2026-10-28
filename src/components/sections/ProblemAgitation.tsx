@@ -66,8 +66,8 @@ export default function ProblemAgitation() {
                 <FadeInUp delay={0.3}>
                     <div className="relative rounded-2xl bg-white/[0.01] border border-white/[0.05] p-8 lg:p-12">
                         {/* Labels */}
-                        <div className="flex items-center justify-between mb-8">
-                            <div>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-4 mb-8">
+                            <div className="text-left">
                                 <p className="text-sm text-[#5a6a6e] mb-1">Without Us</p>
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-4xl font-bold text-fatigue-red font-editorial">
@@ -81,11 +81,12 @@ export default function ProblemAgitation() {
                                 </div>
                             </div>
 
-                            <div className="h-12 w-px bg-gradient-to-b from-transparent via-champagne/30 to-transparent" />
+                            <div className="hidden sm:block h-12 w-px bg-gradient-to-b from-transparent via-champagne/30 to-transparent" />
+                            <div className="block sm:hidden h-px w-full bg-gradient-to-r from-transparent via-champagne/30 to-transparent" />
 
-                            <div className="text-right">
+                            <div className="text-left sm:text-right">
                                 <p className="text-sm text-[#5a6a6e] mb-1">With POPM</p>
-                                <div className="flex items-baseline gap-2 justify-end">
+                                <div className="flex items-baseline gap-2 justify-start sm:justify-end">
                                     <span className="text-4xl font-bold text-mint font-editorial">
                                         +215%
                                     </span>
@@ -95,13 +96,14 @@ export default function ProblemAgitation() {
                         </div>
 
                         {/* Chart */}
-                        <div className="relative w-full h-[200px] lg:h-[280px]">
-                            <svg
-                                className="w-full h-full"
-                                viewBox="0 0 820 220"
-                                preserveAspectRatio="none"
-                                fill="none"
-                            >
+                        <div className="w-full relative pb-6 -mb-6">
+                            <div className="relative w-full h-[180px] lg:h-[280px]">
+                                <svg
+                                    className="absolute inset-0 w-full h-full"
+                                    viewBox="0 0 820 220"
+                                    preserveAspectRatio="none"
+                                    fill="none"
+                                >
                                 {/* Grid lines */}
                                 {[40, 80, 120, 160, 200].map((y) => (
                                     <line
@@ -159,6 +161,7 @@ export default function ProblemAgitation() {
                                     fill="rgba(239,68,68,0.5)"
                                     fontSize="11"
                                     fontFamily="Inter"
+                                    className="hidden sm:block"
                                 >
                                     Creative Fatigue Zone
                                 </text>
@@ -170,6 +173,7 @@ export default function ProblemAgitation() {
                                     fill="rgba(184,242,230,0.5)"
                                     fontSize="11"
                                     fontFamily="Inter"
+                                    className="hidden sm:block"
                                 >
                                     Recovery Zone
                                 </text>
@@ -178,13 +182,14 @@ export default function ProblemAgitation() {
                             {/* Timeline */}
                             <div className="absolute bottom-0 left-[5%] right-[5%] flex justify-between text-xs text-[#5a6a6e]">
                                 <span>Week 1</span>
-                                <span>Week 2</span>
+                                <span className="hidden sm:inline">Week 2</span>
                                 <span>Week 3</span>
-                                <span>Week 4</span>
+                                <span className="hidden sm:inline">Week 4</span>
                                 <span>Week 5</span>
-                                <span>Week 6</span>
+                                <span className="hidden sm:inline">Week 6</span>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </FadeInUp>
             </div>

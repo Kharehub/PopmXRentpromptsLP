@@ -1,16 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import FadeInUp from "@/components/ui/FadeInUp";
-
-const spendTiers = [
-    { label: "$10k – $50k / mo", value: "10k-50k" },
-    { label: "$50k – $150k / mo", value: "50k-150k" },
-    { label: "$150k – $500k / mo", value: "150k-500k" },
-    { label: "$500k+ / mo", value: "500k+" },
-];
 
 const clientLogos = [
     "GenZAI University",
@@ -25,35 +18,15 @@ const clientLogos = [
     "Murad",
 ];
 
+const CALENDLY_LINK = "https://calendly.com/sourabhkhare2/15min";
+
 export default function QualificationForm() {
-    const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
-        brand: "",
-        spend: "",
-        name: "",
-        email: "",
-        query: "",
-    });
+    const [slotsRemaining] = useState(7); // Update this manually or fetch from API
 
-    function handleNext() {
-        if (step < 3) setStep(step + 1);
-    }
-
-    function handleBack() {
-        if (step > 1) setStep(step - 1);
-    }
-
-    function handleSubmit() {
-        console.log("Form submitted:", formData);
-        setStep(4); // show thank-you
-    }
-
-    const canProceed =
-        (step === 1 && formData.brand.trim().length > 0) ||
-        (step === 2 && formData.spend.length > 0) ||
-        (step === 3 &&
-            formData.name.trim().length > 0 &&
-            formData.email.trim().length > 0);
+    const handleBookCall = () => {
+        // Open Calendly in new tab
+        window.open(CALENDLY_LINK, '_blank');
+    };
 
     return (
         <section
@@ -69,35 +42,52 @@ export default function QualificationForm() {
                 <div className="text-center mb-16">
                     <FadeInUp>
                         <span className="mb-4 inline-block text-xs font-medium tracking-[0.3em] uppercase text-champagne">
-                            Apply Now
+                            Exclusive Partnership
                         </span>
                     </FadeInUp>
                     <FadeInUp delay={0.1}>
                         <h2 className="font-editorial text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl mb-6">
-                            Is Your Brand
+                            Ready to Scale Your
                             <br />
-                            <span className="text-gradient-mint">Ready to Scale?</span>
+                            <span className="text-gradient-mint">Creative Performance?</span>
                         </h2>
                     </FadeInUp>
                     <FadeInUp delay={0.2}>
                         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-[#8a9a9e]">
-                            We partner with a maximum of{" "}
+                            We work exclusively with{" "}
                             <span className="text-mint font-semibold">
-                                3 brands per quarter
+                                high-growth DTC brands spending $50k+/month
                             </span>{" "}
-                            to ensure white-glove creative excellence. Apply below to see if
-                            we&apos;re the right fit.
+                            on paid social. Book a 15-minute strategy call to explore if we&apos;re the right creative partner for your brand.
                         </p>
                     </FadeInUp>
                 </div>
 
-                {/* ── Trust Signals ────────────────────────────────── */}
+                {/* ── Trust Signals & Scarcity ────────────────────────────────── */}
                 <FadeInUp delay={0.25}>
                     <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+                        <div className="flex items-center gap-2 rounded-full border border-mint/30 bg-mint/5 px-4 py-2">
+                            <div className="h-2 w-2 rounded-full bg-mint animate-pulse" />
+                            <span className="text-xs font-semibold text-mint">
+                                Only {slotsRemaining} strategy calls available this month
+                            </span>
+                        </div>
                         <div className="flex items-center gap-2 rounded-full border border-champagne/20 px-4 py-2">
-                            <div className="h-2 w-2 rounded-full bg-fatigue-red animate-pulse" />
-                            <span className="text-xs font-medium text-champagne">
-                                Only 3 partnerships available for Q2
+                            <svg
+                                className="h-4 w-4 text-champagne"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                            </svg>
+                            <span className="text-xs font-medium text-[#8a9a9e]">
+                                15-Minute Call • No Obligation
                             </span>
                         </div>
                         <div className="flex items-center gap-2 rounded-full border border-champagne/20 px-4 py-2">
@@ -168,239 +158,78 @@ export default function QualificationForm() {
 
                 </FadeInUp>
 
-                {/* ── Form Card ───────────────────────────────────── */}
+                {/* ── Discovery Call CTA Card ───────────────────────────────────── */}
                 <FadeInUp delay={0.35}>
-                    <div className="mx-auto max-w-xl">
-                        <div className="rounded-3xl bg-white/[0.01] border border-white/[0.05] p-8 lg:p-10">
-                            {/* Progress bar */}
-                            <div className="mb-8">
-                                <div className="flex items-center justify-between mb-3">
-                                    {[1, 2, 3].map((s) => (
-                                        <div
-                                            key={s}
-                                            className="flex items-center gap-2"
-                                        >
-                                            <div
-                                                className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition-all duration-300 ${step >= s
-                                                    ? "bg-mint text-obsidian"
-                                                    : "border border-champagne/30 text-[#5a6a6e]"
-                                                    }`}
-                                            >
-                                                {step > s ? (
-                                                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                ) : (
-                                                    s
-                                                )}
-                                            </div>
-                                            {s < 3 && (
-                                                <div
-                                                    className={`hidden h-px w-16 sm:block lg:w-24 transition-colors duration-300 ${step > s ? "bg-mint/40" : "bg-champagne/10"
-                                                        }`}
-                                                />
-                                            )}
+                    <div id="strategy-call" className="mx-auto max-w-2xl scroll-mt-24">
+                        <div className="rounded-3xl bg-white/[0.01] border border-white/[0.05] p-8 lg:p-12">
+                            {/* What You'll Get */}
+                            <div className="text-center mb-10">
+                                <h3 className="font-editorial text-2xl font-semibold text-white mb-4">
+                                    What You&apos;ll Get on This Call
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                                    {/* Benefit 1 */}
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-mint/10 border border-mint/20">
+                                            <svg className="h-6 w-6 text-mint" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                            </svg>
                                         </div>
-                                    ))}
+                                        <h4 className="text-sm font-semibold text-white mb-2">Creative Audit</h4>
+                                        <p className="text-xs text-[#8a9a9e]">Quick analysis of your current ad creative performance</p>
+                                    </div>
+
+                                    {/* Benefit 2 */}
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-mint/10 border border-mint/20">
+                                            <svg className="h-6 w-6 text-mint" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                            </svg>
+                                        </div>
+                                        <h4 className="text-sm font-semibold text-white mb-2">Growth Strategy</h4>
+                                        <p className="text-xs text-[#8a9a9e]">Personalized roadmap to scale your creative output</p>
+                                    </div>
+
+                                    {/* Benefit 3 */}
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-mint/10 border border-mint/20">
+                                            <svg className="h-6 w-6 text-mint" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <h4 className="text-sm font-semibold text-white mb-2">Partnership Fit</h4>
+                                        <p className="text-xs text-[#8a9a9e]">Clear assessment if we&apos;re aligned for partnership</p>
+                                    </div>
                                 </div>
-                                <p className="text-xs text-[#5a6a6e]">
-                                    Step {Math.min(step, 3)} of 3
+                            </div>
+
+                            {/* Main CTA */}
+                            <div className="text-center">
+                                <MagneticButton
+                                    className="inline-flex items-center gap-3 rounded-full bg-mint px-10 py-5 text-base font-semibold text-obsidian hover:glow-mint transition-all shadow-lg shadow-mint/20"
+                                    onClick={handleBookCall}
+                                >
+                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    Book Your Strategy Call
+                                </MagneticButton>
+                                <p className="mt-4 text-xs text-[#5a6a6e]">
+                                    Response time: Typically within 4 hours
                                 </p>
                             </div>
 
-                            {/* Step Content */}
-                            <AnimatePresence mode="wait">
-                                {step === 1 && (
-                                    <motion.div
-                                        key="step1"
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <h3 className="font-editorial text-xl font-semibold text-white mb-2">
-                                            What&apos;s your brand?
-                                        </h3>
-                                        <p className="text-sm text-[#8a9a9e] mb-6">
-                                            Let us know who we&apos;d be partnering with.
-                                        </p>
-                                        <input
-                                            type="text"
-                                            placeholder="Enter your brand name"
-                                            value={formData.brand}
-                                            onChange={(e) =>
-                                                setFormData({ ...formData, brand: e.target.value })
-                                            }
-                                            className="w-full rounded-xl border border-champagne/15 bg-white/[0.04] px-5 py-4 text-sm text-white placeholder:text-[#5a6a6e] outline-none transition-all focus:border-mint/40 focus:ring-1 focus:ring-mint/20 min-h-[44px]"
-                                        />
-                                    </motion.div>
-                                )}
-
-                                {step === 2 && (
-                                    <motion.div
-                                        key="step2"
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <h3 className="font-editorial text-xl font-semibold text-white mb-2">
-                                            Monthly ad spend
-                                        </h3>
-                                        <p className="text-sm text-[#8a9a9e] mb-6">
-                                            This helps us understand your scale and match the right
-                                            creative volume.
-                                        </p>
-                                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                            {spendTiers.map((tier) => (
-                                                <button
-                                                    key={tier.value}
-                                                    onClick={() =>
-                                                        setFormData({ ...formData, spend: tier.value })
-                                                    }
-                                                    className={`rounded-xl border px-5 py-4 text-left text-sm font-medium transition-all min-h-[44px] ${formData.spend === tier.value
-                                                        ? "border-mint/40 bg-mint/10 text-mint"
-                                                        : "border-champagne/15 bg-white/[0.02] text-[#8a9a9e] hover:border-champagne/30 hover:bg-white/[0.04]"
-                                                        }`}
-                                                >
-                                                    {tier.label}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </motion.div>
-                                )}
-
-                                {step === 3 && (
-                                    <motion.div
-                                        key="step3"
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <h3 className="font-editorial text-xl font-semibold text-white mb-2">
-                                            Your details
-                                        </h3>
-                                        <p className="text-sm text-[#8a9a9e] mb-6">
-                                            We&apos;ll reach out within 24 hours if it&apos;s a mutual
-                                            fit.
-                                        </p>
-                                        <div className="space-y-4">
-                                            <input
-                                                type="text"
-                                                placeholder="Your full name"
-                                                value={formData.name}
-                                                onChange={(e) =>
-                                                    setFormData({ ...formData, name: e.target.value })
-                                                }
-                                                className="w-full rounded-xl border border-champagne/15 bg-white/[0.04] px-5 py-4 text-sm text-white placeholder:text-[#5a6a6e] outline-none transition-all focus:border-mint/40 focus:ring-1 focus:ring-mint/20 min-h-[44px]"
-                                            />
-                                            <input
-                                                type="email"
-                                                placeholder="your@email.com"
-                                                value={formData.email}
-                                                onChange={(e) =>
-                                                    setFormData({ ...formData, email: e.target.value })
-                                                }
-                                                className="w-full rounded-xl border border-champagne/15 bg-white/[0.04] px-5 py-4 text-sm text-white placeholder:text-[#5a6a6e] outline-none transition-all focus:border-mint/40 focus:ring-1 focus:ring-mint/20 min-h-[44px]"
-                                            />
-                                            <textarea
-                                                placeholder="What creative challenge are you facing? (optional)"
-                                                value={formData.query}
-                                                onChange={(e) =>
-                                                    setFormData({ ...formData, query: e.target.value })
-                                                }
-                                                rows={3}
-                                                className="w-full rounded-xl border border-champagne/15 bg-white/[0.04] px-5 py-4 text-sm text-white placeholder:text-[#5a6a6e] outline-none transition-all focus:border-mint/40 focus:ring-1 focus:ring-mint/20 resize-none"
-                                            />
-                                        </div>
-                                    </motion.div>
-                                )}
-
-                                {step === 4 && (
-                                    <motion.div
-                                        key="step4"
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.4 }}
-                                        className="text-center py-8"
-                                    >
-                                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-mint/10">
-                                            <svg
-                                                className="h-8 w-8 text-mint"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                                strokeWidth={2}
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                />
-                                            </svg>
-                                        </div>
-                                        <h3 className="font-editorial text-2xl font-semibold text-white mb-3">
-                                            Application Received
-                                        </h3>
-                                        <p className="text-sm text-[#8a9a9e] max-w-sm mx-auto">
-                                            Thank you, {formData.name}. Our creative strategist will
-                                            review your application and reach out within 24 hours.
-                                        </p>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-
-                            {/* Navigation Buttons */}
-                            {step <= 3 && (
-                                <div className="mt-8 flex items-center justify-between">
-                                    {step > 1 ? (
-                                        <button
-                                            onClick={handleBack}
-                                            className="flex items-center gap-1 text-sm text-[#8a9a9e] transition-colors hover:text-white min-h-[44px] px-2"
-                                        >
-                                            <svg
-                                                className="h-4 w-4"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                                strokeWidth={2}
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M15 19l-7-7 7-7"
-                                                />
-                                            </svg>
-                                            Back
-                                        </button>
-                                    ) : (
-                                        <div />
-                                    )}
-
-                                    {step < 3 ? (
-                                        <MagneticButton
-                                            className={`rounded-full px-8 py-3 text-sm font-semibold transition-all min-h-[44px] ${canProceed
-                                                ? "bg-mint text-obsidian hover:glow-mint"
-                                                : "bg-white/5 text-[#5a6a6e] cursor-not-allowed"
-                                                }`}
-                                            onClick={canProceed ? handleNext : undefined}
-                                        >
-                                            Continue
-                                        </MagneticButton>
-                                    ) : (
-                                        <MagneticButton
-                                            className={`rounded-full px-8 py-3 text-sm font-semibold transition-all min-h-[44px] ${canProceed
-                                                ? "bg-mint text-obsidian hover:glow-mint"
-                                                : "bg-white/5 text-[#5a6a6e] cursor-not-allowed"
-                                                }`}
-                                            onClick={canProceed ? handleSubmit : undefined}
-                                        >
-                                            Submit Application
-                                        </MagneticButton>
-                                    )}
+                            {/* Qualification Badge */}
+                            <div className="mt-10 pt-8 border-t border-white/[0.05]">
+                                <div className="flex items-center justify-center gap-2 text-xs text-[#8a9a9e]">
+                                    <svg className="h-4 w-4 text-mint" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                    <span>
+                                        <span className="text-white font-medium">Best fit for:</span> DTC brands with $50k+/mo ad spend
+                                    </span>
                                 </div>
-                            )}
+                            </div>
                         </div>
                     </div>
                 </FadeInUp>

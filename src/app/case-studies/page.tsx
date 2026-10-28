@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import FadeInUp from "@/components/ui/FadeInUp";
 import MagneticButton from "@/components/ui/MagneticButton";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 /* ── Case Study Data ──────────────────────────────────────────── */
 
@@ -16,6 +17,7 @@ interface CaseStudy {
     category: Category;
     categoryLabel: string;
     src: string;
+    poster: string;
     aspect: "16:9" | "9:16";
     client?: string;
 }
@@ -32,21 +34,21 @@ const categories: { key: Category; label: string }[] = [
 const caseStudies: CaseStudy[] = [
     {
         id: 1,
-        title: "DripFlip — Viral Fashion Reel",
-        category: "ugc",
-        categoryLabel: "UGC Ad",
-        src: "/case-studies/DripFlip.mp4",
+        title: "AI Course — Motion Graphics",
+        category: "motion",
+        categoryLabel: "Motion Graphics",
+        src: "/case-studies/AI course 1_1 (1).mp4",
+        poster: "/video_thumbnails/case-studies/AI course 1_1 (1).jpg",
         aspect: "9:16",
-        client: "DripFlip",
     },
     {
         id: 2,
-        title: "GAMA Luxury Handkerchief",
+        title: "A Lifetime of Love — Couples Journey",
         category: "brand",
         categoryLabel: "Brand Film",
-        src: "/case-studies/GAMA Luxury Handkerchief_005.mp4",
+        src: "/case-studies/A_Lifetime_of_Love_A_Couples_Journey_production_story_30502_16_9_1754573560639_SD17.mp4",
+        poster: "/video_thumbnails/case-studies/A_Lifetime_of_Love_A_Couples_Journey_production_story_30502_16_9_1754573560639_SD17.jpg",
         aspect: "16:9",
-        client: "GAMA",
     },
     {
         id: 3,
@@ -54,186 +56,201 @@ const caseStudies: CaseStudy[] = [
         category: "motion",
         categoryLabel: "Motion Graphics",
         src: "/case-studies/Comp 1_2.mp4",
+        poster: "/video_thumbnails/case-studies/Comp 1_2.jpg",
         aspect: "16:9",
         client: "Studio Reel",
     },
     {
         id: 4,
-        title: "Dynamic Product Showcase",
-        category: "motion",
-        categoryLabel: "Motion Graphics",
-        src: "/case-studies/Comp 1_5.mp4",
-        aspect: "16:9",
-        client: "Studio Reel",
-    },
-    {
-        id: 5,
-        title: "Kinetic Typography Ad",
-        category: "motion",
-        categoryLabel: "Motion Graphics",
-        src: "/case-studies/Comp 1_6.mp4",
-        aspect: "16:9",
-        client: "Studio Reel",
-    },
-    {
-        id: 6,
-        title: "3D Product Animation",
-        category: "motion",
-        categoryLabel: "Motion Graphics",
-        src: "/case-studies/Comp 2.mp4",
-        aspect: "16:9",
-        client: "Studio Reel",
-    },
-    {
-        id: 7,
-        title: "January Campaign — Brand Story",
-        category: "brand",
-        categoryLabel: "Brand Film",
-        src: "/case-studies/Jan-1.mp4",
-        aspect: "16:9",
-    },
-    {
-        id: 8,
-        title: "January Campaign — Sequel",
-        category: "brand",
-        categoryLabel: "Brand Film",
-        src: "/case-studies/Jan-2.mp4",
-        aspect: "16:9",
-    },
-    {
-        id: 9,
-        title: "Patagonia — Cinematic Brand Film",
-        category: "brand",
-        categoryLabel: "Brand Film",
-        src: "/case-studies/Patagonia_Brand_Film_production_story_31273_16_9_1758018651516_SD9.mp4",
-        aspect: "16:9",
-        client: "Patagonia",
-    },
-    {
-        id: 10,
-        title: "Premium Sneaker Ad",
-        category: "product",
-        categoryLabel: "Product Ad",
-        src: "/case-studies/Sneaker_Ad_production_story_31253_16_9_1757319957739_SD0.01.mp4",
-        aspect: "16:9",
-        client: "Sneaker Brand",
-    },
-    {
-        id: 11,
-        title: "Liquid Death — Music Video",
-        category: "brand",
-        categoryLabel: "Brand Film",
-        src: "/case-studies/Liquid_Death_Music_Video_production_story_31298_16_9_1759127564489_SD25.7.mp4",
-        aspect: "16:9",
-        client: "Liquid Death",
-    },
-    {
-        id: 12,
-        title: "De Soi — Premium Drink Ad",
-        category: "product",
-        categoryLabel: "Product Ad",
-        src: "/case-studies/De_Soi_Drink_production_story_31279_16_9_1758099678381_SD0.5.mp4",
-        aspect: "16:9",
-        client: "De Soi",
-    },
-    {
-        id: 13,
         title: "Drip Drop — Business Music Video",
         category: "brand",
         categoryLabel: "Brand Film",
         src: "/case-studies/Drip_Drop_Business_Music_Video_production_story_31301_16_9_1759131775511_SD0.1.mp4",
+        poster: "/video_thumbnails/case-studies/Drip_Drop_Business_Music_Video_production_story_31301_16_9_1759131775511_SD0.1.jpg",
         aspect: "16:9",
     },
     {
-        id: 14,
+        id: 5,
+        title: "Gentle Uplifting Showers",
+        category: "product",
+        categoryLabel: "Product Ad",
+        src: "/case-studies/Gentle_Uplifting_Showers_Right_to_Show_production_story_31125_9_16_1750177076449_SD11.mp4",
+        poster: "/video_thumbnails/case-studies/Gentle_Uplifting_Showers_Right_to_Show_production_story_31125_9_16_1750177076449_SD11.jpg",
+        aspect: "9:16",
+    },
+    {
+        id: 6,
         title: "Glintros Premium Detailing",
         category: "product",
         categoryLabel: "Service Ad",
         src: "/case-studies/Glintros_Premium_Detailing_Services_production_story_31230_16_9_1756190055231_SD18.mp4",
+        poster: "/video_thumbnails/case-studies/Glintros_Premium_Detailing_Services_production_story_31230_16_9_1756190055231_SD18.jpg",
         aspect: "16:9",
         client: "Glintros",
     },
     {
-        id: 15,
-        title: "Detox Tea — The Game Changer",
-        category: "product",
-        categoryLabel: "Product Ad",
-        src: "/case-studies/Detox_Tea_The_Game_Changer_production_story_30500_9_16_1731413220441_SD5.mp4",
-        aspect: "9:16",
-    },
-    {
-        id: 16,
+        id: 7,
         title: "Homesteader Backpack — UGC",
         category: "ugc",
         categoryLabel: "UGC Ad",
         src: "/case-studies/Homesteader_Backpack_UGC_Ad_production_story_31187_9_16_1753184548751_SD3.mp4",
+        poster: "/video_thumbnails/case-studies/Homesteader_Backpack_UGC_Ad_production_story_31187_9_16_1753184548751_SD3.jpg",
         aspect: "9:16",
         client: "Homesteader",
     },
     {
-        id: 17,
-        title: "Sequins Spotlight Dress — UGC",
-        category: "ugc",
-        categoryLabel: "UGC Ad",
-        src: "/case-studies/Own_The_Night_With_Sequins_Spotlight_Dress_UGC_Ad_production_story_31184_9_16_1753180869467_SD19.mp4",
-        aspect: "9:16",
+        id: 8,
+        title: "January Campaign — Brand Story",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/Jan-1.mp4",
+        poster: "/video_thumbnails/case-studies/Jan-1.jpg",
+        aspect: "16:9",
     },
     {
-        id: 18,
-        title: "PureGlow — Radiant Skin",
-        category: "product",
-        categoryLabel: "Product Ad",
-        src: "/case-studies/Pureglow_Natures_Touch_For_Radiant_Skin_production_story_30450_9_16_1731331195133_SD31.mp4",
-        aspect: "9:16",
-        client: "PureGlow",
+        id: 9,
+        title: "January Campaign — Sequel",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/Jan-2.mp4",
+        poster: "/video_thumbnails/case-studies/Jan-2.jpg",
+        aspect: "16:9",
     },
     {
-        id: 19,
+        id: 10,
         title: "Japanese Cheesecake — Cinematic Teaser",
         category: "lifestyle",
         categoryLabel: "Food & Lifestyle",
         src: "/case-studies/Mastering_Japanese_Cheesecake_A_Cinematic_Teaser_production_story_30453_9_16_1731330536087_SD27.mp4",
+        poster: "/video_thumbnails/case-studies/Mastering_Japanese_Cheesecake_A_Cinematic_Teaser_production_story_30453_9_16_1731330536087_SD27.jpg",
         aspect: "9:16",
     },
     {
-        id: 20,
-        title: "Kimchi Fried Rice — Recipe Film",
-        category: "lifestyle",
-        categoryLabel: "Food & Lifestyle",
-        src: "/case-studies/The_Ultimate_Kimchi_Fried_Rice_Recipe_production_story_30413_9_16_1731326847990_SD88.mp4",
-        aspect: "9:16",
-    },
-    {
-        id: 21,
-        title: "Butter HydraSilk Primer — UGC",
+        id: 11,
+        title: "Pearl White Night Suit — UGC",
         category: "ugc",
         categoryLabel: "UGC Ad",
-        src: "/case-studies/Why_I_Love_The_Butter_HydraSilk_Primer_production_story_31126_9_16_1750177140110_SD11.mp4",
+        src: "/case-studies/Pearl_White_Night_Suit_UGC_Ad_production_story_31181_9_16_1753176726542_SD5.mp4",
+        poster: "/video_thumbnails/case-studies/Pearl_White_Night_Suit_UGC_Ad_production_story_31181_9_16_1753176726542_SD5.jpg",
         aspect: "9:16",
     },
     {
-        id: 22,
+        id: 12,
+        title: "PureGlow — Radiant Skin",
+        category: "product",
+        categoryLabel: "Product Ad",
+        src: "/case-studies/Pureglow_Natures_Touch_For_Radiant_Skin_production_story_30450_9_16_1731331195133_SD31.mp4",
+        poster: "/video_thumbnails/case-studies/Pureglow_Natures_Touch_For_Radiant_Skin_production_story_30450_9_16_1731331195133_SD31.jpg",
+        aspect: "9:16",
+        client: "PureGlow",
+    },
+    {
+        id: 13,
+        title: "Drew Camouflage Jeans — UGC",
+        category: "ugc",
+        categoryLabel: "UGC Ad",
+        src: "/case-studies/UGC_Ad_Step_Into_Bold_With_Drew_Camouflage_Jeans_production_story_31182_9_16_1753178557089_SD23.mp4",
+        poster: "/video_thumbnails/case-studies/UGC_Ad_Step_Into_Bold_With_Drew_Camouflage_Jeans_production_story_31182_9_16_1753178557089_SD23.jpg",
+        aspect: "9:16",
+    },
+    {
+        id: 14,
+        title: "Behind The Scenes — Production",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/VID_20251114_030430_077_bsl.mp4",
+        poster: "/video_thumbnails/case-studies/VID_20251114_030430_077_bsl.jpg",
+        aspect: "9:16",
+    },
+    {
+        id: 15,
+        title: "Behind The Scenes — Studio",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/VID_20251117_132309_154_bsl.mp4",
+        poster: "/video_thumbnails/case-studies/VID_20251117_132309_154_bsl.jpg",
+        aspect: "9:16",
+    },
+    {
+        id: 16,
+        title: "Dynamic Product Showcase",
+        category: "product",
+        categoryLabel: "Product Ad",
+        src: "/case-studies/Video-323.mp4",
+        poster: "/video_thumbnails/case-studies/Video-323.jpg",
+        aspect: "16:9",
+    },
+    {
+        id: 17,
+        title: "Brand Story — Video 464",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/Video-464.mp4",
+        poster: "/video_thumbnails/case-studies/Video-464.jpg",
+        aspect: "16:9",
+    },
+    {
+        id: 18,
+        title: "Client Review — November Campaign",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/WhatsApp Video 2025-11-17 at 13.29.16.mp4",
+        poster: "/video_thumbnails/case-studies/WhatsApp Video 2025-11-17 at 13.29.16.jpg",
+        aspect: "9:16",
+    },
+    {
+        id: 19,
         title: "Hawthorne Sunglasses — UGC",
         category: "ugc",
         categoryLabel: "UGC Ad",
         src: "/case-studies/Your_Everyday_Essential_Hawthorne_Sunglasses_UGC_Ad_production_story_31180_9_16_1753173638151_SD15.mp4",
+        poster: "/video_thumbnails/case-studies/Your_Everyday_Essential_Hawthorne_Sunglasses_UGC_Ad_production_story_31180_9_16_1753173638151_SD15.jpg",
         aspect: "9:16",
         client: "Hawthorne",
     },
     {
-        id: 23,
-        title: "Cinematic French Toast",
+        id: 20,
+        title: "Chand Beauty Collection",
+        category: "product",
+        categoryLabel: "Product Ad",
+        src: "/case-studies/chand 2.mp4",
+        poster: "/video_thumbnails/case-studies/chand 2.jpg",
+        aspect: "9:16",
+    },
+    {
+        id: 21,
+        title: "Final Cut — Brand Story",
+        category: "brand",
+        categoryLabel: "Brand Film",
+        src: "/case-studies/final-01.mp4",
+        poster: "/video_thumbnails/case-studies/final-01.jpg",
+        aspect: "16:9",
+    },
+    {
+        id: 22,
+        title: "Just — Minimalist Campaign",
         category: "lifestyle",
-        categoryLabel: "Food & Lifestyle",
-        src: "/case-studies/Cinematic_French_Toast_Recipe_production_story_30503_16_9_1731478684282_SD1.mp4",
+        categoryLabel: "Lifestyle",
+        src: "/case-studies/just.mp4",
+        poster: "/video_thumbnails/case-studies/just.jpg",
+        aspect: "16:9",
+    },
+    {
+        id: 23,
+        title: "New Collection Launch",
+        category: "product",
+        categoryLabel: "Product Ad",
+        src: "/case-studies/new.mp4",
+        poster: "/video_thumbnails/case-studies/new.jpg",
         aspect: "16:9",
     },
     {
         id: 24,
-        title: "A Lifetime of Love — Couples Journey",
-        category: "brand",
-        categoryLabel: "Brand Film",
-        src: "/case-studies/A_Lifetime_of_Love_A_Couples_Journey_production_story_30502_16_9_1754573560639_SD17.mp4",
+        title: "North Place — Location Film",
+        category: "lifestyle",
+        categoryLabel: "Lifestyle",
+        src: "/case-studies/north-place.mp4",
+        poster: "/video_thumbnails/case-studies/north-place.jpg",
         aspect: "16:9",
     },
 ];
@@ -248,20 +265,14 @@ const stats = [
 /* ── Video Card Component ──────────────────────────────────────── */
 
 function VideoCard({ study, index }: { study: CaseStudy; index: number }) {
-    const videoRef = useRef<HTMLVideoElement>(null);
     const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseEnter = () => {
         setIsHovered(true);
-        videoRef.current?.play();
     };
 
     const handleMouseLeave = () => {
         setIsHovered(false);
-        if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-        }
     };
 
     const isWide = study.aspect === "16:9";
@@ -272,41 +283,42 @@ function VideoCard({ study, index }: { study: CaseStudy; index: number }) {
             className={isWide ? "col-span-1 sm:col-span-2" : "col-span-1"}
         >
             <motion.div
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.06] cursor-pointer h-full"
+                className="group relative overflow-hidden rounded-2xl border border-white/[0.06] cursor-pointer h-full shadow-lg shadow-black/20"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
             >
                 {/* Aspect Ratio Container */}
                 <div
                     className={`relative w-full ${isWide ? "aspect-video" : "aspect-[3/4]"}`}
                 >
                     {/* Video */}
-                    <video
-                        ref={videoRef}
+                    <VideoPlayer
                         src={study.src}
+                        poster={study.poster}
                         muted
                         loop
                         playsInline
                         preload="metadata"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        autoPlay={isHovered}
+                        className="transition-transform duration-700 group-hover:scale-105"
                     />
 
                     {/* Idle overlay — dark tint when not hovered */}
                     <div
-                        className={`absolute inset-0 bg-black/40 transition-opacity duration-500 ${isHovered ? "opacity-0" : "opacity-100"
+                        className={`absolute inset-0 bg-black/30 transition-all duration-500 ${isHovered ? "opacity-0" : "opacity-100"
                             }`}
                     />
 
                     {/* Play icon in center */}
                     <div
-                        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isHovered ? "opacity-0" : "opacity-70"
+                        className={`absolute inset-0 flex items-center justify-center transition-all duration-400 ${isHovered ? "opacity-0 scale-90" : "opacity-80 scale-100"
                             }`}
                     >
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 backdrop-blur-lg border border-white/30 shadow-xl shadow-black/40">
                             <svg
-                                className="h-6 w-6 text-white ml-0.5"
+                                className="h-7 w-7 text-white ml-0.5"
                                 fill="currentColor"
                                 viewBox="0 0 24 24"
                             >
@@ -316,7 +328,7 @@ function VideoCard({ study, index }: { study: CaseStudy; index: number }) {
                     </div>
 
                     {/* Bottom gradient overlay */}
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className={`absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t transition-opacity duration-500 ${isHovered ? "from-black/80 via-black/30" : "from-black/95 via-black/50"} to-transparent`} />
 
                     {/* Category tag */}
                     <div className="absolute top-4 left-4 z-10">
@@ -338,7 +350,7 @@ function VideoCard({ study, index }: { study: CaseStudy; index: number }) {
                     </div>
 
                     {/* Hover border glow */}
-                    <div className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent transition-colors duration-500 group-hover:border-mint/30" />
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-mint/40 group-hover:shadow-[0_0_20px_rgba(28,107,106,0.3)]" />
                 </div>
             </motion.div>
         </FadeInUp>
@@ -469,7 +481,7 @@ export default function CaseStudiesPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.35 }}
-                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
                             >
                                 {filtered.map((study, index) => (
                                     <VideoCard
@@ -511,7 +523,7 @@ export default function CaseStudiesPage() {
                             <p className="text-lg text-[#8a9a9e] leading-relaxed mb-10">
                                 We partner with a maximum of{" "}
                                 <span className="text-mint font-semibold">
-                                    3 brands per quarter
+                                    20 brands per quarter
                                 </span>{" "}
                                 to deliver white-glove creative excellence. See if we&apos;re
                                 the right fit.
@@ -556,7 +568,7 @@ export default function CaseStudiesPage() {
                     <div className="mx-auto max-w-7xl px-6 lg:px-12 py-8">
                         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                             <Link href="/" className="font-editorial text-lg font-bold text-white">
-                                POPM Consultants
+                                POPM
                             </Link>
                             <a
                                 href="mailto:popmconsultants@gmail.com"

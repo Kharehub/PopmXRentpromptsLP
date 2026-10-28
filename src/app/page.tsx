@@ -24,8 +24,8 @@ export default function Home() {
       <div className="relative z-10 w-full overflow-hidden">
         <Hero />
         <ProblemAgitation />
-        <Pipeline />
         <Capabilities />
+        <Pipeline />
         <QualificationForm />
         <Footer />
       </div>
