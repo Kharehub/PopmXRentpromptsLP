@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "POPM × Rentprompts — Elite Ad Creative Agency",
+  title: "POPM — Elite Ad Creative Agency",
   description:
     "High-volume, AI-powered ad creative production for 8-figure e-commerce brands. We eliminate creative fatigue and revive your CTR.",
   keywords: [

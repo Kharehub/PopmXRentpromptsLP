@@ -84,7 +84,7 @@ export default function ProblemAgitation() {
                             <div className="h-12 w-px bg-gradient-to-b from-transparent via-champagne/30 to-transparent" />
 
                             <div className="text-right">
-                                <p className="text-sm text-[#5a6a6e] mb-1">With POPM × Rentprompts</p>
+                                <p className="text-sm text-[#5a6a6e] mb-1">With POPM</p>
                                 <div className="flex items-baseline gap-2 justify-end">
                                     <span className="text-4xl font-bold text-mint font-editorial">
                                         +215%
