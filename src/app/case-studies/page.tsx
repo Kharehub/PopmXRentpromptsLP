@@ -556,10 +556,16 @@ export default function CaseStudiesPage() {
                     <div className="mx-auto max-w-7xl px-6 lg:px-12 py-8">
                         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                             <Link href="/" className="font-editorial text-lg font-bold text-white">
-                                POPM <span className="text-gradient-gold">×</span> Rentprompts
+                                POPM Consultants
                             </Link>
+                            <a
+                                href="mailto:popmconsultants@gmail.com"
+                                className="text-xs text-[#5a6a6e] transition-colors hover:text-mint"
+                            >
+                                popmconsultants@gmail.com
+                            </a>
                             <p className="text-xs text-[#5a6a6e]">
-                                © 2026 POPM × Rentprompts. All rights reserved.
+                                © 2026 POPM Consultants. All rights reserved.
                             </p>
                         </div>
                     </div>

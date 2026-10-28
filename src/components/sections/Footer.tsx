@@ -18,13 +18,22 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <h3 className="font-editorial text-2xl font-bold text-white mb-4">
-                            POPM{" "}
-                            <span className="text-gradient-gold">×</span>{" "}
-                            Rentprompts
+                            POPM Consultants
                         </h3>
                         <p className="text-sm leading-relaxed text-[#8a9a9e] max-w-sm">
                             Elite ad creative production for 8-figure e-commerce brands.
                             AI-augmented. Performance-engineered. Scale-ready.
+                        </p>
+                        <p className="mt-6 text-sm text-[#8a9a9e]">
+                            <span className="block text-xs font-medium tracking-[0.2em] uppercase text-champagne mb-2">
+                                Support
+                            </span>
+                            <a
+                                href="mailto:popmconsultants@gmail.com"
+                                className="transition-colors hover:text-mint"
+                            >
+                                popmconsultants@gmail.com
+                            </a>
                         </p>
                     </div>
 
@@ -85,7 +94,7 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-champagne/10 pt-8 sm:flex-row">
                     <p className="text-xs text-[#5a6a6e]">
-                        © 2026 POPM × Rentprompts. All rights reserved.
+                        © 2026 POPM Consultants. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6">
                         <a
