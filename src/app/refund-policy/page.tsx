@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function RefundPolicyPage() {
     return (
-        <LegalPage title="Refund & Cancellation Policy" updated="November 1, 2026">
+        <LegalPage title="Refund & Cancellation Policy" updated="November 2, 2026">
             <p>
                 This policy applies to all projects and retainers with POPM Consultants, operated by POPM Consultants.
             </p>
@@ -25,6 +25,9 @@ export default function RefundPolicyPage() {
                 <li>Revisions are included as stated in your proposal. Extra rounds are billed separately.</li>
             </ul>
 
+            <h2>Paid pilots</h2>
+            <p>Paid pilots are non-refundable.</p>
+
             <h2>Retainers</h2>
             <p>
                 Monthly retainers can be cancelled with 30 days written notice. Fees for the notice period are
@@ -33,7 +36,7 @@ export default function RefundPolicyPage() {
 
             <h2>Duplicate or failed payments</h2>
             <p>
-                If you were charged twice or by mistake, we refund the extra amount within [7–10] business days.
+                If you were charged twice or by mistake, we refund the extra amount within 7–10 business days.
             </p>
 
             <h2>How to request a refund</h2>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
     return (
-        <LegalPage title="Privacy Policy" updated="November 1, 2026">
+        <LegalPage title="Privacy Policy" updated="November 2, 2026">
             <p>
                 This Privacy Policy explains how POPM Consultants (&quot;POPM&quot;, &quot;we&quot;, &quot;us&quot;) collects, uses and protects
                 your information when you visit popm.in or work with us. POPM Consultants is registered at
@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
 
             <h2>Cookies and analytics</h2>
             <p>
-                The website uses cookies and similar technology needed for it to work. [If you add an analytics tool, name it here.]
+                The website uses cookies and similar technology needed for it to work. We don't use any analytics tools.
             </p>
 
             <h2>How long we keep information</h2>
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
             <p>
                 You can ask us to access, correct or delete your personal information by emailing{" "}
                 <a href="mailto:popmconsultants@gmail.com" className="text-mint hover:underline">popmconsultants@gmail.com</a>.
-                Grievances can be sent to [GRIEVANCE OFFICER NAME], at the same address.
+                Grievances can be sent to Sourabh Khare, at the same address.
             </p>
 
             <h2>Security</h2>

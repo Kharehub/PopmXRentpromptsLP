@@ -31,6 +31,11 @@ export default function PricingPage() {
                 ))}
             </div>
 
+            <h2>Turnaround</h2>
+            <p>
+                Turnaround is 42 hours for a batch of 5 videos, which is the minimum batch size.
+            </p>
+
             <h2>Payment</h2>
             <p>
                 Payments are made through Razorpay. International clients pay in USD. Indian clients pay in INR at ₹95 to US$1. See our{" "}

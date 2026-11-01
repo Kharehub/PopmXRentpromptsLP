@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
     return (
-        <LegalPage title="Terms of Service" updated="November 1, 2026">
+        <LegalPage title="Terms of Service" updated="November 2, 2026">
             <p>
                 These terms apply to your use of popm.in and to any services provided by POPM Consultants, registered at
                 B-10, BRG Hill View 1, Nayta Mundla, Indore, Madhya Pradesh, 452020 (&quot;POPM&quot;, &quot;we&quot;, &quot;us&quot;).
