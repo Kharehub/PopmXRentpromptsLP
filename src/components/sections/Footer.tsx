@@ -99,18 +99,30 @@ export default function Footer() {
                     <p className="text-xs text-[#5a6a6e]">
                         © 2026 POPM Consultants. All rights reserved.
                     </p>
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-wrap items-center gap-6">
                         <a
-                            href="#"
+                            href="/privacy-policy"
                             className="text-xs text-[#5a6a6e] transition-colors hover:text-mint"
                         >
                             Privacy Policy
                         </a>
                         <a
-                            href="#"
+                            href="/terms"
                             className="text-xs text-[#5a6a6e] transition-colors hover:text-mint"
                         >
                             Terms of Service
+                        </a>
+                        <a
+                            href="/refund-policy"
+                            className="text-xs text-[#5a6a6e] transition-colors hover:text-mint"
+                        >
+                            Refund Policy
+                        </a>
+                        <a
+                            href="/contact"
+                            className="text-xs text-[#5a6a6e] transition-colors hover:text-mint"
+                        >
+                            Contact
                         </a>
                     </div>
                 </div>
